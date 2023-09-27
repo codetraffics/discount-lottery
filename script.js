@@ -1,11 +1,10 @@
-let winMsg = 'Congratulations'
+let winMsg = "Congratulations, you've won 30% discount on your item"
 let tieMsg = 'Oops you were very close'
 let loseMsg = 'Oops you missed it'
 let statusDisplay = document.querySelector('#status-head')
-let playersMoves = document.querySelectorAll('.player-moves-display h2')
 let buttons = document.querySelectorAll('button')
 
-let possibleMoves = ['Rock', 'Paper', 'Scissors']
+let possibleMoves = ['Mario', 'Subway', 'PS']
 
 // functions
 let calcResult = (move1, move2) => {
@@ -24,14 +23,13 @@ let randomMove = () => {
 }
 
 let startGame = () => {
-  statusDisplay.textContent = 'Choose!'
+  statusDisplay.textContent =
+    'Select your favorite game and stand the chance of winning 30% discount on your item'
   buttons.forEach((button, index) => {
     button.textContent = possibleMoves[index]
     button.style.display = 'inline-block'
     buttons[index].addEventListener('click', endGame)
   })
-
-  playersMoves.forEach((move, index) => (move.style.display = 'none'))
 }
 
 let endGame = (event) => {
@@ -40,13 +38,9 @@ let endGame = (event) => {
 
   statusDisplay.textContent = calcResult(playerMove, computerMove)
 
-  playersMoves.forEach((move, index) => (move.style.display = 'inline-block'))
-  playersMoves[0].textContent = `You played ${possibleMoves[playerMove]}`
-  playersMoves[1].textContent = `Computer played ${possibleMoves[computerMove]}`
-
   buttons.forEach((button, index) => {
     if (index == 1) {
-      button.textContent = 'Play again'
+      button.textContent = 'Proceed to Checkout'
       button.removeEventListener('click', endGame)
       button.addEventListener('click', startGame)
     } else {
